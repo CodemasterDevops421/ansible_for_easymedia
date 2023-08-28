@@ -1,0 +1,24 @@
+# Ansible retry files
+*.retry
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Secrets
+*.pem
+*.key
+*.jks
+
+# IDE files
+.idea/
+.vscode/
+
+# Compiled files
+__pycache__/
+*.pyc
