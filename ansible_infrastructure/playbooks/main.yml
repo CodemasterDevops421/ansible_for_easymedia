@@ -1,0 +1,35 @@
+---
+- name: Comprehensive Server Setup for Production
+  hosts: your_target_host
+  become: yes
+  roles:
+    - common
+
+  tasks:
+    - name: Install UFW
+      apt: 
+        name: ufw
+        state: latest
+
+    - name: Enable UFW
+      command: ufw enable
+
+    - name: Configure firewalls
+      ufw:
+        rule: "{{ item.rule }}"
+        name: "{{ item.port }}"
+      loop: "{{ firewall_rules }}"
+
+    - name: Install Fail2Ban
+      apt: 
+        name: fail2ban
+        state: latest
+
+    - name: Set authorized key taken from file
+      authorized_key:
+        user: "{{ ansible_ssh_user }}"
+        state: present
+        key: "{{ lookup('file', 'roles/common/files/local_ssh_key.pub') }}"
+
+  handlers:
+    - include: roles/common/handlers/main.yml
