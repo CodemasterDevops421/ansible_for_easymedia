@@ -10,5 +10,5 @@ This repository contains Ansible playbooks for automating infrastructure setup a
 ## Usage
 Run the main playbook with:
 \`\`\`
-ansible-playbook -i inventory/production.ini playbooks/main.yml
+ansible-playbook -i inventory/hosts.ini playbooks/main.yml
 \`\`\`
